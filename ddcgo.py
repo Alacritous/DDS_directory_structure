@@ -5,6 +5,7 @@ import os
 import shutil
 import sys
 from time import sleep as sleep
+
 # 000 Computer science, information & general works
 # 100 Philosophy & psychology
 # 200 Religion
@@ -35,48 +36,48 @@ else:
     os.mkdir("dds")
 
 
-with open('DDSGORun0.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
+with open("DDSGORun0.csv", "r", encoding="utf-8", errors="ignore") as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=",")
     line_count = 0
     for row in csv_reader:
-        x = (f'{row[0]} - {row[1]}')
-        os.mkdir(f'dds\{x}')
+        x = f"{row[0]} - {row[1]}"
+        os.mkdir(f"dds/{x}")
 
-with open('DDSGORun1.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
+with open("DDSGORun1.csv", "r", encoding="utf-8", errors="ignore") as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=",")
     line_count = 0
     for row in csv_reader:
         # this number will be 010 or 020 check first digit and change into 000
         # or 100 or 200 etc
         a = row[0]
         b = row[1]
-        x = (f'{a} - {b}')
-        #print(x)
-        prefix = (f'{a[:1]}00')
-        os.chdir('dds')
+        x = f"{a} - {b}"
+        print(x)
+        prefix = f"{a[:1]}00"
+        os.chdir("dds")
         lst = os.listdir()
         path = [x for x in lst if prefix in x]
         os.chdir(path[0])
-        x = (f'{row[0]} - {row[1]}')
+        x = f"{row[0]} - {row[1]}"
         os.mkdir(x)
         os.chdir(ppath)
 
 
-with open('DDSGORun2.csv') as csv_file:
-    csv_reader = csv.reader(csv_file, delimiter=',')
+with open("DDSGORun2.csv", "r", encoding="utf-8", errors="ignore") as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=",")
     line_count = 0
     for row in csv_reader:
         a = row[0]
         b = row[1]
-        x = (f'{a} - {b}')
+        x = f"{a} - {b}"
         # print(x)
-        os.chdir(f'{ppath}\dds')
-        prefix = (f'{a[:1]}00')
+        os.chdir(f"{ppath}/dds")
+        prefix = f"{a[:1]}00"
         lst = os.listdir()
         firstpath = [x for x in lst if prefix in x]
         os.chdir(firstpath[0])
-        #print(firstpath[0])
-        prefix2 = (f'{a[:2]}0')
+        print(firstpath[0])
+        prefix2 = f"{a[:2]}0"
         lst = os.listdir()
         secondpath = [x for x in lst if prefix2 in x]
         os.chdir(secondpath[0])
